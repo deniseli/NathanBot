@@ -12,6 +12,8 @@ import nltk
 import random
 import sys
 import urllib2
+from lists import *
+
 
 def split_text(text):
     return nltk.word_tokenize(text)
@@ -37,11 +39,12 @@ def talk_about_paul():
 def talk_about_country_music():
     # Could do something interesting with this with a web app.  Perhaps autoplay
     # a song at the top of the country music charts?
+    song_and_artist = random.choice(country_tunes)
     nathan_says("Let's listen to country music!")
+    nathan_says("What do you say to listening to a bit of " + song_and_artist[0] + "?")
+    nathan_says(song_and_artist[1] + " is a great musician.")
 
 def talk_about_my_spirit_animal():
-    critical_animals = ['Addax', 'African wild ass', 'Alabama cavefish', 'Amur leopard', 'Arakan forest turtle', 'Asiatic cheetah', 'Axolotl', 'Bactrian camel', 'Brazilian merganser', 'Brown spider monkey', 'California condor', 'Chinese alligator', 'Chinese giant salamander', 'Gharial', 'Hawaiian monk seal', 'Iberian lynx', 'Island fox', 'Javan rhino', 'Kakapo', 'Leatherback sea turtle', 'Mediterranean monk seal', 'Mexican wolf', 'Mountain gorilla', 'Northern hairy-nosed wombat', 'Philippine eagle', 'Red wolf', 'Saiga', 'Siamese crocodile', "Spix's macaw", 'Southern bluefin tuna', 'Sumatran orangutan', 'Sumatran rhinoceros', 'Vaquita', 'Yangtze river dolphin', 'Northern white rhinoceros', 'Asiatic Lion', 'African grey parrot', 'African elephant', 'American paddlefish', 'Common carp', 'Clouded leopard', 'Cheetah', 'Chinese giant salamander', 'Dugong', 'Far eastern curlew', 'Fossa', 'Galapagos tortoise', 'Gaur', 'Blue-eyed cockatoo', 'Golden hamster', 'Whale shark', 'Crowned crane', 'Hippopotamus', 'Humboldt penguin', 'Indian rhinoceros', 'Komodo dragon', 'Lesser white-fronted goose', 'Lion', 'Mandrill', 'Maned sloth', 'Mountain zebra', 'Polar bear', 'Red panda', 'Sloth bear', 'Takin', 'Yak', 'African penguin', 'African wild dog', 'Asian elephant', 'Blue whale', 'Bonobo', 'Bornean orangutan', 'Common chimpanzee', 'Dhole', 'Eastern lowland gorilla', 'Ethiopian wolf', 'Hispid hare', 'Giant otter', 'Giant panda', 'Goliath frog', 'Green sea turtle', "Grevy's zebra", 'Hyacinth macaw', 'Japanese crane', "Lear's macaw", 'Malayan tapir', 'Markhor', 'Persian leopard', 'Proboscis monkey', 'Pygmy hippopotamus', 'Red-breasted goose', "Rothschild's giraffe", 'Snow leopard', "Steller's sea lion", 'Scopas tang', 'Takhi', 'Tiger', 'Vietnamese pheasant', 'Volcano rabbit', 'Wild water buffalo']
-    extinct_animals = ['Atlas bear', 'Aurochs', 'Bali tiger', 'Blackfin cisco', 'Caribbean monk seal', 'Carolina parakeet', 'Caspian tiger', 'Dodo', 'Dusky seaside sparrow', 'Eastern cougar', 'Elephant bird', 'Golden toad', 'Great auk', "Haast's eagle", 'Japanese sea lion', 'Javan tiger', 'Labrador duck', 'Moa', 'Passenger pigeon', 'Pterosaurs', 'Saber-toothed cat', "Schomburgk's deer", 'Short-faced bear', "Steller's sea cow", 'Thylacine', 'Toolache wallaby', 'Western black rhinoceros', 'Woolly mammoth', 'Woolly rhinoceros', 'Barbary lion', 'Catarina pupfish', 'Hawaiian crow', 'Scimitar oryx', 'Socorro dove', 'Wyoming toad']
     if random.randint(0, 1) is 0:
         animal_phrase = "The " + random.choice(critical_animals) + \
                         " is my spirit animal. It's going to die out soon..."
