@@ -36,13 +36,21 @@ def talk_about_paul():
     nathan_says(random.choice(sayings))
 
 def talk_about_country_music():
-    # Could do something interesting with this with a web app.  Perhaps autoplay a song
-    # at the top of the country music charts?
+    # Could do something interesting with this with a web app.  Perhaps autoplay
+    # a song at the top of the country music charts?
     nathan_says("Let's listen to country music!")
 
 def talk_about_my_spirit_animal():
     # Still working on this
     nathan_says("Paul Tagliamonte is my spirit animal!")
+
+def go_to_meeting():
+    # Over the summer of 2013 while interning at Facebook, our beloved Nathan
+    # went to every single meeting in the hope of getting another free t-shirt.
+    # This is an artist's rendition of that phenomenon.
+    sayings = ["Sorry, I have to go to a meeting.  ttyl"]
+    nathan_says(random.choice(sayings))
+    sys.exit()
 
 def default_nathan():
     random.choice([
@@ -50,7 +58,8 @@ def default_nathan():
         talk_about_debian,
         talk_about_paul,
         talk_about_country_music,
-        talk_about_my_spirit_animal
+        talk_about_my_spirit_animal,
+        go_to_meeting
     ])()
 
 input = ""
