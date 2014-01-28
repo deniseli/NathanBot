@@ -13,7 +13,6 @@ import random
 import sys
 import urllib2
 
-
 def split_text(text):
     return nltk.word_tokenize(text)
 
@@ -49,6 +48,7 @@ def talk_about_my_spirit_animal():
         animal_phrase = "The " + random.choice(critical_animals) + " is my spirit animal. It's going to die out soon..."
     else:
         animal_phrase = "The " + random.choice(extinct_animals) + " is my spirit animal. It's extinct."
+    nathan_says(animal_phrase)
 
 def go_to_meeting():
     # Over the summer of 2013 while interning at Facebook, our beloved Nathan
@@ -57,6 +57,7 @@ def go_to_meeting():
     sayings = ["Sorry, I have to go to a meeting.  ttyl"]
     nathan_says(random.choice(sayings))
     sys.exit()
+        
 
 def default_nathan():
     random.choice([
