@@ -17,7 +17,16 @@ from lists import *
 
 
 def split_text(text):
-    return nltk.word_tokenize(text)
+    words = nltk.word_tokenize(text)
+    if check_has_greeting(words):
+        respond_to_greeting()
+        return True
+    if any(s in words for s in ("paultag", "paul", "tagliamonte")):
+        talk_about_paul()
+        return True
+    #if any(s in words for s in (critical_animals + extinct_animals)):
+    #    talk_about_my_spirit_animal()
+    return False
 
 def nathan_says(text):
     sys.stdout.write("NathanBot: ")
@@ -28,6 +37,14 @@ def nathan_says(text):
         if l is ' ': time.sleep(0.15)
         else: time.sleep(random.uniform(0.05, 0.1))
     print
+
+def check_has_greeting(words):
+    sayings = ["hi", "hello", "greetings", "salutations", "hey", "hola"]
+    return any(s in words for s in sayings)
+
+def respond_to_greeting():
+    sayings = ["Hi.", "Hello.", "Hi!"]
+    nathan_says(random.choice(sayings))
 
 def talk_about_open_source():
     nathan_is_a_pretty_big_deal("open source")
@@ -68,7 +85,9 @@ def go_to_meeting():
     sayings = ["Sorry, I have to go to a meeting.  ttyl"]
     nathan_says(random.choice(sayings))
     sys.exit()
-        
+
+def hehehe():
+    nathan_says("hehehe")
 
 def default_nathan():
     random.choice([
@@ -79,20 +98,16 @@ def default_nathan():
         talk_about_my_spirit_animal,
         go_to_meeting
     ])()
+    if random.randint(0, 4) is 0: hehehe()
 
 input = ""
-input_split = []
 nathan_says("Oh, hi!")
 # "Oh, hi!" is temporary.  I actually want the user to input a background music
 # choice upon starting NathanBot, but as soon as it loads, NathanBot replaces
 # said choice with country music.
 while True:
     input = raw_input("> ").lower()
-    input_split = split_text(input)
     if "fuck off, nathan" in input:
         nathan_says("Oh, come on!")
         sys.exit()
-    elif "paul tagliamonte" in input or "paultag" in input:
-        talk_about_paul()
-    else:
-        default_nathan()
+    elif not split_text(input): default_nathan()
