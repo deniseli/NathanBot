@@ -37,6 +37,14 @@ def nathan_says(text):
         if l is ' ': time.sleep(0.15)
         else: time.sleep(random.uniform(0.05, 0.1))
     print
+    if random.randint(0, 4) is 0: hehehe()
+
+def handle_happiness(text):
+    global happiness
+    if "nathan" in text: happiness += 1
+    # add check for key words
+    else: happiness -= 1
+    if happiness <= 0: go_to_meeting()
 
 def check_has_greeting(words):
     sayings = ["hi", "hello", "greetings", "salutations", "hey", "hola"]
@@ -66,8 +74,8 @@ def talk_about_country_music():
     # a song at the top of the country music charts?
     song_and_artist = random.choice(country_tunes)
     nathan_says("Let's listen to country music!")
-    nathan_says("What do you say to listening to a bit of " + song_and_artist[0] + "?")
-    nathan_says(song_and_artist[1] + " is a great musician.")
+    nathan_says("What do you say to listening to a bit of \"" + song_and_artist[0] + "\"?")
+    nathan_says(song_and_artist[1] + " is great.")
 
 def talk_about_my_spirit_animal():
     if random.randint(0, 1) is 0:
@@ -87,7 +95,7 @@ def go_to_meeting():
     sys.exit()
 
 def hehehe():
-    nathan_says("hehehe")
+    nathan_says("he" * ((happiness/3) + 1) + "h")
 
 def default_nathan():
     random.choice([
@@ -98,8 +106,8 @@ def default_nathan():
         talk_about_my_spirit_animal,
         go_to_meeting
     ])()
-    if random.randint(0, 4) is 0: hehehe()
 
+happiness = 10
 input = ""
 nathan_says("Oh, hi!")
 # "Oh, hi!" is temporary.  I actually want the user to input a background music
@@ -107,6 +115,7 @@ nathan_says("Oh, hi!")
 # said choice with country music.
 while True:
     input = raw_input("> ").lower()
+    handle_happiness(input)
     if "fuck off, nathan" in input:
         nathan_says("Oh, come on!")
         sys.exit()
