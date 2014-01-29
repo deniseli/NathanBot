@@ -11,6 +11,7 @@
 import nltk
 import random
 import sys
+import time
 import urllib2
 from lists import *
 
@@ -19,7 +20,14 @@ def split_text(text):
     return nltk.word_tokenize(text)
 
 def nathan_says(text):
-    print "NathanBot: " + text
+    sys.stdout.write("NathanBot: ")
+    sys.stdout.flush()
+    for l in text:
+        sys.stdout.write(l)
+        sys.stdout.flush()
+        if l is ' ': time.sleep(0.15)
+        else: time.sleep(random.uniform(0.05, 0.1))
+    print
 
 def talk_about_open_source():
     nathan_is_a_pretty_big_deal("open source")
