@@ -41,9 +41,23 @@ def nathan_says(text):
 
 def handle_happiness(text):
     global happiness
-    if "nathan" in text: happiness += 1
+    things_that_make_nathan_happy = [
+      "open source",
+      "debian",
+      "paul",
+      "tag",
+      "steam",
+      "meeting",
+      "t-shirt",
+      "tshirt",
+    ]
+    if "nathan" in text:
+      happiness += 2
     # add check for key words
-    else: happiness -= 1
+    elif any(thing in text for thing in things_that_make_nathan_happy):
+      happiness += 1
+    else:
+      happiness -= 1
     if happiness <= 0: go_to_meeting()
 
 def check_has_greeting(words):
