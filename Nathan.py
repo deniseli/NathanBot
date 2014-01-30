@@ -53,7 +53,11 @@ def handle_happiness(text):
     global happiness
     if "nathan" in text:
       happiness += 2
-    elif any(s in text for list in key_words_and_phrases.values() for s in list for s in list):
+    elif any(
+        s in text \
+        for list in key_words_and_phrases.values() \
+        for s in list for s in list
+    ):
       happiness += 1
     else:
       happiness -= 1
@@ -83,7 +87,10 @@ def talk_about_country_music():
     # a song at the top of the country music charts?
     song_and_artist = random.choice(country_tunes)
     nathan_says("Let's listen to country music!")
-    nathan_says("What do you say to listening to a bit of \"" + song_and_artist[0] + "\"?")
+    nathan_says(
+        "What do you say to listening to a bit of \"" + \
+        song_and_artist[0] + "\"?"
+    )
     nathan_says(song_and_artist[1] + " is great.")
 
 def talk_about_my_spirit_animal():
@@ -107,16 +114,21 @@ def hehehe():
     nathan_says("he" * ((happiness/3) + 1) + "h")
 
 def default_nathan():
-    random.choice([
-        talk_about_open_source,
-        talk_about_debian,
-        talk_about_paul,
-        talk_about_country_music,
-        talk_about_my_spirit_animal,
-        go_to_meeting
-    ])()
+    global last_default
+    temp_default_list = [x for x in defaults if x is not last_default]
+    last_default = random.choice(temp_default_list)
+    last_default()
 
+defaults = [
+    talk_about_open_source,
+    talk_about_debian,
+    talk_about_paul,
+    talk_about_country_music,
+    talk_about_my_spirit_animal,
+    go_to_meeting
+]
 happiness = 10
+last_default = None
 input = ""
 nathan_says("Oh, hi!")
 # "Oh, hi!" is temporary.  I actually want the user to input a background music
