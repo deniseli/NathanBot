@@ -25,15 +25,15 @@ def split_text(text):
         sys.exit()
     if any(s in words for s in key_words_and_phrases["greetings"]):
         respond_to_greeting()
-    if any(s in words for s in key_words_and_phrases["debian"]):
-        talk_about_debian()
-        return True
-    if any(s in words for s in key_words_and_phrases["open source"]):
-        talk_about_open_source()
-        return True
-    if any(s in words for s in key_words_and_phrases["paul"]):
-        talk_about_paul()
-        return True
+    topics_of_substance = {
+        "debian" : talk_about_debian,
+        "open source" : talk_about_open_source,
+        "paul" : talk_about_paul
+    }
+    for key in topics_of_substance.keys():
+        if any(s in text for s in key_words_and_phrases[key]):
+            topics_of_substance[key]()
+            return True
     return False
 
 def nathan_says(text):
