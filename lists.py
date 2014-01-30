@@ -1,3 +1,13 @@
+key_words_and_phrases = {
+    "debian" : ["debian", "github"],
+    "greetings" : ["hi", "hello", "greetings", "salutations", "hey", "hola"],
+    "meetings" : ["meeting", "tshirt", "t-shirt"],
+    "open source" : ["open source", "github"],
+    "paul" : ["paul tagliamonte", "paultag"],
+    "steam" : ["steam"],
+    "exit" : ["fuck off, nathan"]
+}
+
 country_tunes = [
     ['Beer For My Horses','Toby Keith with Willie Nelson'],
     ['I Love You','Martina McBride'],

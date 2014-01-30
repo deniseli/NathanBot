@@ -17,15 +17,23 @@ from lists import *
 
 
 def split_text(text):
+    global happiness
     words = nltk.word_tokenize(text)
-    if check_has_greeting(words):
+    if any(s in text for s in key_words_and_phrases["exit"]):
+        happiness = 0
+        nathan_says("Oh, come on!")
+        sys.exit()
+    if any(s in words for s in key_words_and_phrases["greetings"]):
         respond_to_greeting()
+    if any(s in words for s in key_words_and_phrases["debian"]):
+        talk_about_debian()
         return True
-    if any(s in words for s in ("paultag", "paul", "tagliamonte")):
+    if any(s in words for s in key_words_and_phrases["open source"]):
+        talk_about_open_source()
+        return True
+    if any(s in words for s in key_words_and_phrases["paul"]):
         talk_about_paul()
         return True
-    #if any(s in words for s in (critical_animals + extinct_animals)):
-    #    talk_about_my_spirit_animal()
     return False
 
 def nathan_says(text):
@@ -37,32 +45,19 @@ def nathan_says(text):
         if l is ' ': time.sleep(0.15)
         else: time.sleep(random.uniform(0.05, 0.1))
     print
-    if random.randint(0, 4) is 0: hehehe()
+    # Multiple hehehes possible, but unless Nathan is too happy,
+    # chained hehehes should stop quickly.
+    if random.randint(1, happiness + 30) < happiness: hehehe()
 
 def handle_happiness(text):
     global happiness
-    things_that_make_nathan_happy = [
-      "open source",
-      "debian",
-      "paul",
-      "tag",
-      "steam",
-      "meeting",
-      "t-shirt",
-      "tshirt",
-    ]
     if "nathan" in text:
       happiness += 2
-    # add check for key words
-    elif any(thing in text for thing in things_that_make_nathan_happy):
+    elif any(s in text for list in key_words_and_phrases.values() for s in list for s in list):
       happiness += 1
     else:
       happiness -= 1
     if happiness <= 0: go_to_meeting()
-
-def check_has_greeting(words):
-    sayings = ["hi", "hello", "greetings", "salutations", "hey", "hola"]
-    return any(s in words for s in sayings)
 
 def respond_to_greeting():
     sayings = ["Hi.", "Hello.", "Hi!"]
@@ -130,7 +125,4 @@ nathan_says("Oh, hi!")
 while True:
     input = raw_input("> ").lower()
     handle_happiness(input)
-    if "fuck off, nathan" in input:
-        nathan_says("Oh, come on!")
-        sys.exit()
-    elif not split_text(input): default_nathan()
+    if not split_text(input): default_nathan()
