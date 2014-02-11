@@ -106,6 +106,18 @@ def go_to_meeting():
 def hehehe():
     nathan_says("he" * ((happiness/3) + 1) + "h")
 
+def talk_about_jewish_frat():
+    '''
+    Add stuff he says about his fraternity.
+    * "Oh, I went to Israel over break! It was amazing. Do you want to come with next time?"
+    * "My fraternity brothers and I went to Israel. It was a blast! No, literally. Syria is right next door!"
+    * "I wear my facebook t-shirts to all my fraternity parties!"
+    * "My faternity brothers love me! 
+       In fact, they invited me to stay with them in an apartment so we could partake in fun together, at my expense. 
+       Fun!"
+    * "You should come to my fraternity parties! I'm not invited, but I can get you in!"
+    '''
+
 def default_nathan():
     global last_default
     temp_default_list = [x for x in defaults if x is not last_default]
